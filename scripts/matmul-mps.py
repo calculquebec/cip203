@@ -24,12 +24,18 @@ B1 = torch.randn(matrix_size, matrix_size, device=device)
 
 print(f"Allocated GPU memory: {torch.cuda.memory_allocated() / (1024**3):.2f} GB")
 
+matrix_size_cpu = 5000
+A1_cpu = torch.randn(matrix_size_cpu, matrix_size_cpu, device=torch.device("cpu"))
+B1_cpu = torch.randn(matrix_size_cpu, matrix_size_cpu, device=torch.device("cpu"))
+
 # Perform matrix multiplication
 start_time = time.perf_counter()
 # Matrix multiplication on GPU
 C1 = torch.matmul(A1, B1)
 
 # Matrix multiplication on CPU
+# Matrix multiplication on CPU
+C1_cpu = torch.matmul(A1_cpu, B1_cpu)
 
 torch.cuda.synchronize()
 end_time = time.perf_counter()

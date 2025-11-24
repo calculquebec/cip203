@@ -1,4 +1,12 @@
 import torch
+import sys
+
+if len(sys.argv) > 1:
+    matrix_size = int(sys.argv[1])
+    print(f"Performing matrix multiplication of two {matrix_size}x{matrix_size} matrices...")
+else:
+    print("No arguments provided. Quiting ...")
+    sys.exit()
 
 if torch.cuda.is_available():
     device = torch.device("cuda")
@@ -7,7 +15,6 @@ else:
     device = torch.device("cpu")
     print("Using CPU")
 
-matrix_size = 10000  # Adjust this value to increase/decrease GPU intensity
 
 # Initialize CUDA streams
 
